@@ -21,7 +21,7 @@ phases:
       - echo Build completed on `date`
       - echo Packaging artifacts for deployment...
       - sam package --resolve-s3 --template-file template.yaml --output-template-file outputSamTemplate.yaml
-      - ls -la bin
+      - ls -la
 
 artifacts:
   files:
