@@ -1,0 +1,28 @@
+
+phases:
+  install:
+    runtime-versions:
+      go: 1.23.0
+    commands:
+      - echo Installing dependencies...
+      - go mod tidy
+      - go mod download
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Running Go tests...
+      - go test ./... -v
+      - echo Building the Go binary...
+      - GOOS=linux GOARCH=amd64 go build -o .
+
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Packaging artifacts for deployment...
+      - sam package --s3-bucket aws-training-rds-images --template-file template.yaml --output-template-file outputSamTemplate.yaml
+      - ls -la bin
+
+artifacts:
+  files:
+    - bootstrap
+    - outputSamTemplate.yaml
