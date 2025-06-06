@@ -20,7 +20,7 @@ phases:
     commands:
       - echo Build completed on `date`
       - echo Packaging artifacts for deployment...
-      - sam package --s3-bucket aws-training-rds-images --template-file template.yaml --output-template-file outputSamTemplate.yaml
+      - sam package --resolve-s3 --template-file template.yaml --output-template-file outputSamTemplate.yaml
       - ls -la bin
 
 artifacts:
